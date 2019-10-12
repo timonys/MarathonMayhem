@@ -13,7 +13,7 @@ ATargetPoint* ABoulderSpawner::GetRandomSpawnPoint()
 
 void ABoulderSpawner::SpawnBoulder()
 {
-
+	//spawn boulder at a random place defined by an array of predefined spawnlocations
 	ATargetPoint* spawnPoint = GetRandomSpawnPoint();
 	GetWorld()->SpawnActor<AHazardousBoulder>(boulderObject,spawnPoint->GetActorLocation() ,spawnPoint->GetActorRotation());
 	--m_BouldersLeft;
@@ -26,7 +26,6 @@ void ABoulderSpawner::HandleBoulderSpawn(float DeltaTime)
 	//spawn a new boulder if the limit has not been reached
 	if (m_BouldersLeft > 0)
 	{
-		//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,FString::SanitizeFloat(m_BouldersLeft) );
 		if (m_SpawnTimer >= m_SpawnTime)
 		{
 			SpawnBoulder();
@@ -39,7 +38,6 @@ void ABoulderSpawner::HandleBoulderSpawn(float DeltaTime)
 	}
 	else
 	{
-	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, "Deactivating");
 		m_IsActive = false;
 		m_SpawnTimer = 0.0f;
 		m_CanSpawn = false;
@@ -58,7 +56,6 @@ void ABoulderSpawner::Activate()
 // Sets default values
 ABoulderSpawner::ABoulderSpawner()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 }
 
